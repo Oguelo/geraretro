@@ -1,7 +1,8 @@
 import sqlite3
+import os
 
-NOME_BANCO = 'retro_games.db'
-
+PASTA_DATA = os.path.join(os.path.dirname(__file__), '..', 'db')
+NOME_BANCO = os.path.join(PASTA_DATA, 'retro_games.db')
 def obter_conexao():
     return sqlite3.connect(NOME_BANCO)
 

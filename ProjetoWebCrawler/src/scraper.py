@@ -1,15 +1,17 @@
-import requests
 from bs4 import BeautifulSoup
 import time
 import random
 from constants import HEADERS
 
-def extrair_dados_jogo(url):
+
+def extrair_dados_jogo(url, session):
     max_tentativas = 3
+    
     for tentativa in range(max_tentativas):
         time.sleep(random.uniform(1.0, 3.0))
         try:
-            response = requests.get(url, headers=HEADERS, timeout=15)
+            response = session.get(url, timeout=15)
+            
             if response.status_code == 503:
                 time.sleep(10)
                 continue
@@ -57,7 +59,7 @@ def extrair_dados_jogo(url):
                     break
             
             return dados
-        except:
+        except Exception as e:
             if tentativa == max_tentativas - 1: return None
             time.sleep(5)
     return None
