@@ -61,7 +61,6 @@ async function preencherListasDeFiltros() {
 
 async function inicializarApp() {
   try {
-    // Apenas tentamos carregar os filtros. Se a API estiver offline, cairá no catch.
     await preencherListasDeFiltros();
   } catch (erro) {
     console.error("API Offline ou Erro de conexão.");
@@ -71,7 +70,6 @@ async function inicializarApp() {
 }
 
 async function gerarPlaylist() {
-  // Valores padrão (||) garantem que a API nunca receba campos vazios (Erro 422)
   const anoInicio = document.getElementById("filtro-ano-inicio").value || 1990;
   const anoFim = document.getElementById("filtro-ano-fim").value || 2000;
   const nota = document.getElementById("filtro-nota").value || 0;
